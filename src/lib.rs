@@ -1,3 +1,5 @@
+mod tests;
+
 use std::{
     alloc::{alloc_zeroed, Layout},
     mem::size_of,
@@ -33,7 +35,7 @@ impl ModuleBuilder {
         }
     }
 
-    pub fn add_modul<T: Module>(mut self) -> Self {
+    pub fn add_module<T: Module>(mut self) -> Self {
         self.module_infos.push(ModuleInfo {
             size: size_of::<T>(),
             module_id: T::ID,
@@ -45,8 +47,7 @@ impl ModuleBuilder {
     }
 
     pub fn build(mut self) -> Result<(Layout, Vec<*mut u8>), String> {
-        let layout = Layout::from_size_align(self.allocation_size, self.allocation_size)
-            .map_err(|e| e.to_string())?;
+        let layout = Layout::from_size_align(self.allocation_size, 8).map_err(|e| e.to_string())?;
         let alloc_pointer = unsafe { alloc_zeroed(layout) };
 
         self.module_infos
@@ -60,45 +61,5 @@ impl ModuleBuilder {
         }
 
         Ok((layout, self.module_pointers))
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use derive::{module_handler, Module};
-
-    #[derive(Module, Debug)]
-    pub struct Asd {
-        a: u8,
-    }
-
-    #[derive(Module, Debug)]
-    pub struct Ksd {
-        a: u8,
-    }
-
-    #[module_handler]
-    struct Dsa {
-        _a: u8,
-    }
-
-    #[test]
-    fn main() {
-        let module_builder_res = ModuleBuilder::new()
-            .add_modul::<Asd>()
-            .add_modul::<Ksd>()
-            .build()
-            .unwrap();
-        let mut dsa = Dsa {
-            _a: 0,
-            _layout: module_builder_res.0,
-            _module_pointers: module_builder_res.1,
-        };
-
-        dsa.get_module_mut::<Asd>().a = 1;
-        dbg!(dsa.get_module::<Asd>());
-
-        dsa.drop();
     }
 }

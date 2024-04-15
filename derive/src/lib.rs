@@ -38,6 +38,8 @@ pub fn module_handler(_: TokenStream, item: TokenStream) -> TokenStream {
         None
     };
 
+    unsafe { dbg!(MODULE_ID) };
+
     let gen = quote! {
         #vis struct #name {
             #fields
