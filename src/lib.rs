@@ -1,9 +1,9 @@
-mod tests;
-
 use std::{
     alloc::{alloc_zeroed, Layout},
     mem::size_of,
 };
+
+pub use derive::*;
 
 pub trait Module {
     const ID: usize;

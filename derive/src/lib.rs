@@ -59,7 +59,6 @@ pub fn module_handler(_: TokenStream, item: TokenStream) -> TokenStream {
                 unsafe {&*((self._module_pointers[T::ID]) as *const T)}
             }
 
-
             fn get_module_mut<T: Module>(&self) -> &'a mut T {
                 unsafe {&mut *((self._module_pointers[T::ID]) as *mut T)}
             }
