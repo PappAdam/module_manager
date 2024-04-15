@@ -3,6 +3,8 @@ workspace = { members = ["derive"] }
 name = "module_manager"
 version = "0.1.0"
 edition = "2021"
+authors = ["Papp Adam <p.adam555@proton.me>"]
+repository = "https://github.com/PappAdam/module_manager"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
