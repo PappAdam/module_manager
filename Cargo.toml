@@ -8,6 +8,9 @@ license = "MIT"
 description = "Crate to Manage modules"
 include = ["modules_derive"]
 
+[lib]
+crate-type = ["rlib"]
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
