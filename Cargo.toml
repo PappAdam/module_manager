@@ -6,13 +6,11 @@ authors = ["Papp Adam <p.adam555@proton.me>"]
 repository = "https://github.com/PappAdam/module_manager"
 license = "MIT"
 description = "Crate to Manage modules"
-include = ["modules_derive"]
 
 [lib]
 crate-type = ["rlib"]
-path = "src/lib.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-modules_derive = { path = "modules_derive", version = "0.2.0" }
+module_manager_derive = "0.2.0"
