@@ -4,15 +4,16 @@ version = 3
 
 [[package]]
 name = "derive"
-version = "0.1.1"
+version = "0.2.0"
 dependencies = [
+ "proc-macro2",
  "quote",
  "syn",
 ]
 
 [[package]]
 name = "module_manager"
-version = "0.1.1"
+version = "0.2.0"
 dependencies = [
  "derive",
 ]
