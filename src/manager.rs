@@ -4,7 +4,7 @@ use std::{
     mem::size_of,
 };
 
-pub use derive;
+pub use modules_derive;
 
 pub trait Module {
     const ID: usize;
