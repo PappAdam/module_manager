@@ -31,6 +31,7 @@ pub struct ModuleBundleBuilder {
     max_module_id: usize,
 }
 
+#[derive(Clone)]
 pub struct ModuleBundle {
     pub layout: Layout,
     pub module_pointers: Vec<usize>,
@@ -43,15 +44,18 @@ impl ModuleBundle {
             module_pointers: Vec::new(),
         }
     }
+
+    pub fn is_empty(&self) -> bool {
+        self.module_pointers.is_empty()
+    }
 }
 
 impl Drop for ModuleBundle {
     fn drop(&mut self) {
-        if self.module_pointers.len() > 0 {
+        if !self.is_empty() {
             unsafe { dealloc(self.module_pointers[0] as *mut u8, self.layout) }
+            println!("Module bundle has been dropped");
         }
-
-        println!("Module bundle has been dropped");
     }
 }
 
