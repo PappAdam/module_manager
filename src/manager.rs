@@ -24,6 +24,7 @@ struct ModuleInfo {
     module_id: usize,
 }
 
+#[derive(Default)]
 pub struct ModuleBundleBuilder {
     module_infos: Vec<ModuleInfo>,
     allocation_size: usize,
@@ -60,15 +61,6 @@ impl Drop for ModuleBundle {
 }
 
 impl ModuleBundleBuilder {
-    pub fn new() -> Self {
-        Self {
-            module_infos: Vec::new(),
-            allocation_size: 0,
-            module_pointers: Vec::new(),
-            max_module_id: 0,
-        }
-    }
-
     pub fn add_module<T: Module>(mut self) -> Self {
         self.module_infos.push(ModuleInfo {
             size: size_of::<T>(),
