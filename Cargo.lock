@@ -11,9 +11,9 @@ dependencies = [
 
 [[package]]
 name = "module_manager_derive"
-version = "0.2.0"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d1c16ed74ef6e4f12d122cdad0241d423f0c9a17fbaeaf11792f08f21dbd194b"
+checksum = "58f3db7dc47f0f27e333307a706ef6a0dc5063879e3b755ae65fa6c63a31136c"
 dependencies = [
  "proc-macro2",
  "quote",
